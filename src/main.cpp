@@ -52,14 +52,14 @@ void loop() {
   frame3 = (frame3 + 1) % FRAME_COUNT3;
 // DHT compute heat Index in percentage
   if ((humidity != nowHumid) || (temperature != nowTemp)) {
-    tft.fillRect(0, 60, 300, 40, ILI9341_BLACK);
-    tft.setCursor(0, 80);
+    tft.fillRect(0, 50, 300, 40, ILI9341_BLACK);
+    tft.setCursor(0, 70);
     tft.print("Heat Index: " + String(dht.computeHeatIndex((temperature, humidity, false)))+ "%");
   }
 
   // Extract the temperature value in C and in K
   if (temperature != nowTemp) {
-    tft.fillRect(0, 100, 300, 40, ILI9341_BLACK);
+    tft.fillRect(0, 90, 300, 40, ILI9341_BLACK);
     tft.setFont(&FreeMonoBoldOblique12pt7b);
 
     if (nowTemp >= 50)
@@ -70,24 +70,27 @@ void loop() {
     {
       tft.setTextColor(ILI9341_BLUE);
     }
-    tft.setCursor(0, 120);
+    tft.setCursor(0, 110);
     tft.print("Temperature: " + String(nowTemp) + "C"); //Draw new time
     //Convert that temp from C to K and display
-    tft.fillRect(0, 140, 300, 40, ILI9341_BLACK);
-    tft.setCursor(0, 160);
+    tft.fillRect(0, 130, 300, 40, ILI9341_BLACK);
+    tft.setCursor(0, 150);
     tft.print("Temperature: " + String(nowTemp + 273.15) + "K"); //Draw new time
+    tft.fillRect(0, 170, 300, 40, ILI9341_BLACK);
+    tft.setCursor(0, 190);
+    tft.print("Temperature: " + String((9/5)*nowTemp + 32) + "F"); //Draw new time
     temperature = nowTemp;
   }
 // Extract and display Humidity in Percentage
   if (humidity != nowHumid) {
-    tft.fillRect(0, 180, 300, 40, ILI9341_BLACK);
+    tft.fillRect(0, 210, 300, 40, ILI9341_BLACK);
     tft.setFont(&FreeMonoBoldOblique12pt7b);
 
     if (nowHumid >= 50)
     {
       tft.setTextColor(ILI9341_RED);
     }
-    tft.setCursor(0, 200);
+    tft.setCursor(0, 230);
     tft.print("Humidity: " + String(nowHumid) + "%"); //Draw new time
     humidity = nowHumid;
   }
