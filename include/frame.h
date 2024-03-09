@@ -1,13 +1,21 @@
+/* 
+* This header file contains all the frame from the bitmap to be displayed
+* It also define all the variables and constants to be use the main function
+*/
+#ifndef ___FRAME_H__
+#define ___FRAME_H__
+
 #include <Arduino.h>
-int frame1, frame2, frame3, frame4, frame5 = 0;
 #define DHT_Pin 25
 #define TFT_DC 4
 #define TFT_CS 5
-float nowTemp, temperature;
-float  humidity, nowHumid;
-#define FRAME_DELAY (42)
 #define FRAME_WIDTH (32)
 #define FRAME_HEIGHT (32)
+float nowTemp, temperature;
+float  humidity, nowHumid;
+int frame1, frame2, frame3, frame4, frame5 = 0;
+
+
 #define FRAME_COUNT1 (sizeof(frames1) / sizeof(frames1[0]))
 const byte PROGMEM frames1[][128] = {
   {0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,31,255,255,240,48,0,0,24,37,40,0,24,45,40,0,8,45,40,0,8,45,40,0,14,45,40,0,6,45,40,0,6,45,40,0,6,45,40,0,6,45,40,0,14,45,40,0,8,45,40,0,8,37,40,0,24,48,0,0,24,31,255,255,240,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0},
@@ -166,3 +174,4 @@ const byte PROGMEM frames5[][128] = {
   {0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,128,2,0,1,0,1,128,2,0,0,192,2,0,0,7,224,0,0,28,56,0,0,16,8,0,0,48,12,0,0,32,4,0,0,32,4,120,30,32,4,0,0,32,4,0,0,48,12,0,0,16,8,0,0,28,56,0,0,7,224,0,0,64,3,0,0,192,1,128,0,128,0,64,1,0,128,0,0,0,128,0,0,0,128,0,0,0,128,0,0,0,0,0,0,0,0,0,0,0,0,0},
   {0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,1,0,0,0,1,0,0,0,1,0,128,3,0,1,128,1,128,3,0,0,192,2,0,0,7,224,0,0,28,56,0,0,16,8,0,0,48,12,0,0,32,4,0,0,32,4,120,30,32,4,0,0,32,4,0,0,48,12,0,0,16,8,0,0,28,56,0,0,7,224,0,0,64,3,0,0,192,1,128,1,128,0,192,1,0,128,0,0,0,128,0,0,0,128,0,0,0,128,0,0,0,0,0,0,0,0,0,0,0,0,0}
 };
+#endif

@@ -16,16 +16,16 @@ void setup() {
   pinMode(DHT_Pin, INPUT);
   tft.invertDisplay(false);    // Do not invert the colors of the display
   tft.setRotation(1);          // Rotate the display
-  Serial.begin(115200);
+  tft.setTextSize(0.8);                                // Define the text size for the display
 }
 
 void loop() {
   nowTemp   = dht.readTemperature(false);                //temperature from the dht
   nowHumid  = dht.readHumidity();                       //humidity from the dht
-  tft.setTextColor(ILI9341_WHITE);
+  tft.setTextColor(ILI9341_WHITE);                      // Define the default display color of the text on the display
   // Battery icon
-  tft.fillRect(290, 12, 15, 13, ILI9341_RED);
-  tft.drawBitmap(285, 2, frames1[frame1], FRAME_WIDTH, FRAME_HEIGHT, ILI9341_WHITE);
+  tft.fillRect(290, 12, 15, 13, ILI9341_RED);            ///Draw a display zone
+  tft.drawBitmap(285, 2, frames1[frame1], FRAME_WIDTH, FRAME_HEIGHT, ILI9341_WHITE);  // Draw a frame on the zone drew above
   frame1 = (frame1 + 1) % FRAME_COUNT1;
   // Weather icon
   tft.fillRect(95, 0, 40, 35, ILI9341_BLACK);
@@ -53,7 +53,6 @@ void loop() {
 // DHT compute heat Index in percentage
   if ((humidity != nowHumid) || (temperature != nowTemp)) {
     tft.fillRect(0, 60, 300, 40, ILI9341_BLACK);
-    tft.setTextSize(0.8);
     tft.setCursor(0, 80);
     tft.print("Heat Index: " + String(dht.computeHeatIndex((temperature, humidity, false)))+ "%");
   }
@@ -71,12 +70,10 @@ void loop() {
     {
       tft.setTextColor(ILI9341_BLUE);
     }
-    tft.setTextSize(0.8);
     tft.setCursor(0, 120);
     tft.print("Temperature: " + String(nowTemp) + "C"); //Draw new time
     //Convert that temp from C to K and display
     tft.fillRect(0, 140, 300, 40, ILI9341_BLACK);
-    tft.setTextSize(0.8);
     tft.setCursor(0, 160);
     tft.print("Temperature: " + String(nowTemp + 273.15) + "K"); //Draw new time
     temperature = nowTemp;
@@ -90,8 +87,6 @@ void loop() {
     {
       tft.setTextColor(ILI9341_RED);
     }
-
-    tft.setTextSize(0.8);
     tft.setCursor(0, 200);
     tft.print("Humidity: " + String(nowHumid) + "%"); //Draw new time
     humidity = nowHumid;
